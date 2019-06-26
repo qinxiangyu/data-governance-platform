@@ -1,0 +1,121 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.6.RELEASE'
+	id 'java'
+	id 'idea'
+	id 'war'
+	id 'maven'
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'groovy'
+
+group = 'com.weiyi.hlj'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	flatDir {
+		dirs 'lib'
+	}
+	mavenLocal()
+	maven {url 'http://nexus.guahao-inc.com/nexus/content/groups/public/'}
+	mavenCentral()
+//	maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-data-redis'
+	compile 'org.slf4j:slf4j-api:1.7.16'
+	compile group: 'commons-io', name: 'commons-io', version: '2.5'
+	compile 'org.apache.commons:commons-lang3:3.4'
+	compile 'mysql:mysql-connector-java:5.1.38'
+	compile 'io.springfox:springfox-swagger-ui:2.6.1'
+	compile 'io.springfox:springfox-swagger2:2.6.1'
+	compile 'com.alibaba:fastjson:1.2.15'
+	compile 'com.alibaba:druid-spring-boot-starter:1.1.10'
+	compile 'org.codehaus.groovy:groovy-all:2.4.6'
+	compile 'commons-codec:commons-codec:1.12'
+	compile 'com.baomidou:mybatis-plus-boot-starter:3.1.1'
+	compile 'org.projectlombok:lombok:1.18.4'
+	compile 'com.baomidou:mybatis-plus:3.1.1'
+	compile 'com.baomidou:mybatis-plus-generator:3.1.1'
+	compile 'org.apache.velocity:velocity-engine-core:2.1'
+	compile 'com.baomidou:dynamic-datasource-spring-boot-starter:2.5.4'
+	compile 'org.quartz-scheduler:quartz:2.3.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+idea {
+	module {
+		downloadSources = true
+	}
+}
+
+task libs(type: Sync) {
+	from configurations.runtime
+	into "$buildDir/lib"
+}
+
+task createDirs() {
+	sourceSets*.java.srcDirs*.each { it.mkdirs() }
+	sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+task sourcesJar(type: Jar) {
+	from sourceSets.main.allSource
+	classifier = 'sources'
+}
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.9'
+}
+
+artifacts {
+	archives sourcesJar
+}
+
+jar {
+	manifest {
+		attributes 'Build-Date': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+				'Built-By': System.getProperty('user.name'),
+				'Built-JDK': System.getProperty('java.version'),
+				'Built-OS': "${System.getProperty('os.name')}/${System.getProperty('os.version')}",
+				'Source-Compatibility': sourceCompatibility,
+				'Target-Compatibility': targetCompatibility,
+				'Rev-Revision': version,
+				'Git-Revision': 'git rev-parse HEAD'.execute().text.trim(),
+				'Git-Branch': 'git rev-parse --abbrev-ref HEAD'.execute().text.trim()
+	}
+}
+
+def pomConfig = {
+	packaging 'jar'
+	name project.name
+	groupId project.group
+	artifactId project.name
+	version project.version
+	inceptionYear '2019'
+}
+
+configure(install.repositories.mavenInstaller) {
+	pom.project pomConfig
+}
+
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+uploadArchives {
+//        if (!project.hasProperty('deployUrl') ||
+//                !project.hasProperty('deployUsername') ||
+//                !project.hasProperty('deployPassword')) {
+//            logger.lifecycle('warn: project ext props not config')
+//            return
+//        }
+	repositories {
+		mavenDeployer {
+			pom.project pomConfig
+			configuration = configurations.archives
+			repository(url: localMavenRepo)
+		}
+	}
+}
