@@ -43,6 +43,7 @@ dependencies {
 	compile 'org.apache.velocity:velocity-engine-core:2.1'
 	compile 'com.baomidou:dynamic-datasource-spring-boot-starter:2.5.4'
 	compile 'org.quartz-scheduler:quartz:2.3.0'
+	compile 'org.quartz-scheduler:quartz-jobs:2.2.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

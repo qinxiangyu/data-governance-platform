@@ -6,6 +6,10 @@ import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.weiyi.hlj.common.Constants;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
@@ -97,5 +101,21 @@ public class SystemWebConfig extends WebMvcConfigurationSupport {
         return new PaginationInterceptor();
     }
 
-    // TODO: 2019/6/25  项目启动的时候查询数据库中有没有配置数据源，如果配置就加动态数据源
+    /**
+     * 创建定时任务工厂实例
+     */
+
+    @Bean
+    public SchedulerFactory schedulerFactory(){
+        return new StdSchedulerFactory();
+    }
+
+    /*
+     * 创建调度器
+     */
+    @Bean(name="scheduler")
+    public Scheduler scheduler() throws SchedulerException {
+        return schedulerFactory().getScheduler();
+    }
+
 }
