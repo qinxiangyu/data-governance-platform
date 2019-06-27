@@ -23,9 +23,9 @@ public class UserApi extends BaseApi{
 
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ResponseBody
-    public BaseJsonObject<List<User>> test(){
-        List<User> userList = userService.list();
-        return BaseJsonObject.successResp(userList);
+    public BaseJsonObject<User> test(){
+        User user = userService.selectById(1);
+        return BaseJsonObject.successResp(user);
     }
 
     @GetMapping(value = "/dy")

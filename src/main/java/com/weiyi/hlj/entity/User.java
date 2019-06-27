@@ -1,6 +1,8 @@
 package com.weiyi.hlj.entity;
 
 import java.time.LocalDateTime;
+import java.util.Date;
+
 import com.weiyi.hlj.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -28,7 +30,7 @@ private static final long serialVersionUID=1L;
     private String name;
 
     @ApiModelProperty(value = "创建时间")
-    private LocalDateTime createdTime;
+    private Date createdTime;
 
 
 }

@@ -16,4 +16,6 @@ import java.util.List;
 public interface UserService extends IService<User> {
 
     List<User> dyList(String dataSource);
+
+    User selectById(int i);
 }

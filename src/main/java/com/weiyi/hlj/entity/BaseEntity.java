@@ -18,7 +18,7 @@ public class BaseEntity implements Serializable {
     @ApiModelProperty(value = "主键id")
     @TableId(type = IdType.AUTO)
     private Integer id;
-//
+
 //    @ApiModelProperty(value = "发布时间")
 //    @TableField(value = "gmt_created")
 //    private Date gmtCreated;

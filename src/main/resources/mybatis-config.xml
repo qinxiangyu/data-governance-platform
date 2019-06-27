@@ -8,10 +8,9 @@
     </settings>
     <typeAliases>
         <package name="com.weiyi.hlj.entity"/>
-        <package name="com.hlj.website.dao.customer.entity"/>
+        <package name="com.weiyi.hlj.dto"/>
     </typeAliases>
     <mappers>
         <package name="com.weiyi.hlj.mapper"></package>
-        <package name="com.hlj.website.dao.customer.mapper"></package>
     </mappers>
 </configuration>
