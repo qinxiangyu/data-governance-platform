@@ -5,4 +5,9 @@ package com.weiyi.hlj.common;
  */
 public class Constants {
     public static final String CHARSET_UTF_8 = "UTF-8";
+
+    public static final String AUTHORIZATION = "x-data-platform";
+
+    public static final String USER_INFO = "user-info";
+
 }

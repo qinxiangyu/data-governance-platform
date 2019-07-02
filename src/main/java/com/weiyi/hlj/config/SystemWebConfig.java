@@ -36,9 +36,15 @@ public class SystemWebConfig extends WebMvcConfigurationSupport {
     @Autowired
     private LoggerInterceptor loggerInterceptor;
 
+    @Autowired
+    private AuthenticationInterceptor authenticationInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(loggerInterceptor);
+        registry.addInterceptor(authenticationInterceptor)
+                .addPathPatterns("/*")
+                .excludePathPatterns("/login","/swagger-ui.html","/v2/api-docs","/webjars/**","/swagger-resources/**");
         super.addInterceptors(registry);
     }
 
