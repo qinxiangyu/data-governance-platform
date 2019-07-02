@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by qinxy on 2019/7/2.
  */
 @Data
-public class AccountCredentials extends BaseDTO{
+public class LoginDTO extends BaseDTO{
 
     private String username;
 

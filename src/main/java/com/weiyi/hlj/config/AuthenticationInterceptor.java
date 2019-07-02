@@ -2,7 +2,8 @@ package com.weiyi.hlj.config;
 
 import com.alibaba.fastjson.JSONObject;
 import com.weiyi.hlj.common.Constants;
-import com.weiyi.hlj.dto.AccountCredentials;
+import com.weiyi.hlj.dto.LoginDTO;
+import com.weiyi.hlj.entity.User;
 import com.weiyi.hlj.utils.JWTUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //验证
-        AccountCredentials user = jwtUtil.getUser(request);
+        User user = jwtUtil.getUser(request);
         if(user != null && StringUtils.isNotBlank(user.getUsername())){
             request.setAttribute(Constants.USER_INFO,user);
             return true;

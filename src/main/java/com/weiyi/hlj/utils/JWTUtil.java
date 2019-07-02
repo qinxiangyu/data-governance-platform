@@ -2,7 +2,7 @@ package com.weiyi.hlj.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.weiyi.hlj.common.Constants;
-import com.weiyi.hlj.dto.AccountCredentials;
+import com.weiyi.hlj.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -32,12 +32,12 @@ public class JWTUtil {
 
     private Logger logger = LoggerFactory.getLogger(JWTUtil.class);
 
-    public String generateToken(AccountCredentials accountCredentials) {
+    public String generateToken(User user) {
         String JWT = Jwts.builder()
                 // 保存权限（角色）
                 .claim("roles", "user")
                 // 用户名写入标题
-                .setSubject(JSONObject.toJSONString(accountCredentials))
+                .setSubject(JSONObject.toJSONString(user))
                 // 有效期设置
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 // 签名设置
@@ -67,7 +67,7 @@ public class JWTUtil {
                 .getBody();
     }
 
-    public AccountCredentials getUser(HttpServletRequest request) {
+    public User getUser(HttpServletRequest request) {
         String token = request.getHeader(Constants.AUTHORIZATION);
         if(StringUtils.isBlank(token)){
             return null;
@@ -79,7 +79,7 @@ public class JWTUtil {
             logger.error("token过期:{}", jwtException.getMessage());
         }
         if (StringUtils.isNotBlank(userInfo)) {
-            return JSONObject.parseObject(userInfo, AccountCredentials.class);
+            return JSONObject.parseObject(userInfo, User.class);
         }
         return null;
     }
@@ -96,7 +96,7 @@ public class JWTUtil {
         if (StringUtils.isBlank(userInfo)) {
             return false;
         }
-        AccountCredentials user = JSONObject.parseObject(userInfo, AccountCredentials.class);
+        User user = JSONObject.parseObject(userInfo, User.class);
         if (user != null && StringUtils.isBlank(user.getUsername())) {
             return false;
         }

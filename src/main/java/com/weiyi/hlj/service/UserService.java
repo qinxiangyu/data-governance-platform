@@ -11,11 +11,11 @@ import java.util.List;
  * </p>
  *
  * @author system
- * @since 2019-06-25
+ * @since 2019-07-02
  */
 public interface UserService extends IService<User> {
 
-    List<User> dyList(String dataSource);
-
     User selectById(int i);
+
+    List<User> dyList(String dataSource);
 }

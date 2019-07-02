@@ -1,8 +1,6 @@
 package com.weiyi.hlj.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import com.weiyi.hlj.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +14,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author system
- * @since 2019-06-25
+ * @since 2019-07-02
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -27,10 +25,13 @@ public class User extends BaseEntity {
 private static final long serialVersionUID=1L;
 
     @ApiModelProperty(value = "用户名")
-    private String name;
+    private String username;
 
     @ApiModelProperty(value = "创建时间")
-    private Date createdTime;
+    private LocalDateTime createdTime;
+
+    @ApiModelProperty(value = "密码")
+    private String password;
 
 
 }
