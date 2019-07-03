@@ -44,7 +44,11 @@ public class SystemWebConfig extends WebMvcConfigurationSupport {
         registry.addInterceptor(loggerInterceptor);
         registry.addInterceptor(authenticationInterceptor)
                 .addPathPatterns("/*")
-                .excludePathPatterns("/login","/swagger-ui.html","/v2/api-docs","/webjars/**","/swagger-resources/**");
+                .excludePathPatterns("/login",
+                        "/swagger-ui.html",
+                        "/v2/api-docs",
+                        "/webjars/**",
+                        "/swagger-resources/**");
         super.addInterceptors(registry);
     }
 
@@ -112,14 +116,14 @@ public class SystemWebConfig extends WebMvcConfigurationSupport {
      */
 
     @Bean
-    public SchedulerFactory schedulerFactory(){
+    public SchedulerFactory schedulerFactory() {
         return new StdSchedulerFactory();
     }
 
     /*
      * 创建调度器
      */
-    @Bean(name="scheduler")
+    @Bean(name = "scheduler")
     public Scheduler scheduler() throws SchedulerException {
         return schedulerFactory().getScheduler();
     }
