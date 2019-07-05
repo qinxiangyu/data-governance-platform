@@ -30,6 +30,7 @@ dependencies {
 	compile group: 'commons-io', name: 'commons-io', version: '2.5'
 	compile 'org.apache.commons:commons-lang3:3.4'
 	compile 'mysql:mysql-connector-java:5.1.38'
+	compile 'com.oracle:ojdbc6:11.2.0.3'
 	compile 'io.springfox:springfox-swagger-ui:2.6.1'
 	compile 'io.springfox:springfox-swagger2:2.6.1'
 	compile 'com.alibaba:fastjson:1.2.15'
