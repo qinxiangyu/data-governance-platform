@@ -7,10 +7,10 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-        <package name="com.weiyi.hlj.entity"/>
-        <package name="com.weiyi.hlj.dto"/>
+        <package name="com.qinxy.entity"/>
+        <package name="com.qinxy.dto"/>
     </typeAliases>
     <mappers>
-        <package name="com.weiyi.hlj.mapper"></package>
+        <package name="com.qinxy.mapper"></package>
     </mappers>
 </configuration>

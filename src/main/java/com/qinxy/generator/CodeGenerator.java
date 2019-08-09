@@ -72,7 +72,7 @@ public class CodeGenerator {
         // java包配置
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.weiyi.hlj");
+        pc.setParent("com.qinxy");
         pc.setEntity("entity");
         pc.setMapper("mapper");
         pc.setService("service");
@@ -112,12 +112,12 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.weiyi.hlj.entity.BaseEntity");
+        strategy.setSuperEntityClass("com.qinxy.entity.BaseEntity");
         strategy.setEntityLombokModel(true);
 //        strategy.setRestControllerStyle(true);
-//        strategy.setSuperControllerClass("com.weiyi.hlj.api.BaseApi");
-//        strategy.setSuperServiceClass("com.weiyi.hlj.service.BaseService");
-        strategy.setSuperServiceImplClass("com.weiyi.hlj.service.CommonService");
+//        strategy.setSuperControllerClass("com.qinxy.api.BaseApi");
+//        strategy.setSuperServiceClass("com.qinxy.service.BaseService");
+        strategy.setSuperServiceImplClass("com.qinxy.service.CommonService");
 //        设置生成那些表，不设置默认全部
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
         strategy.setSuperEntityColumns("id","gmt_created","gmt_modified");

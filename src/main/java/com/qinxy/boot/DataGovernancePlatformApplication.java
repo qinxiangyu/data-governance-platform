@@ -7,8 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
-@MapperScan(basePackages = {"com.weiyi.hlj.mapper"})
-@SpringBootApplication(scanBasePackages = {"com.weiyi.hlj"} ,exclude = {DruidDataSourceAutoConfigure.class})
+@MapperScan(basePackages = {"com.qinxy.mapper"})
+@SpringBootApplication(scanBasePackages = {"com.qinxy"} ,exclude = {DruidDataSourceAutoConfigure.class})
 @Configurable
 @ServletComponentScan
 public class DataGovernancePlatformApplication {

@@ -43,9 +43,9 @@ if(isLog) {
     }
 }
 if(isLog) {
-    logger("com.weiyi.hlj.mapper", DEBUG, ["CONSOLE","FILE"])
+    logger("com.qinxy.mapper", DEBUG, ["CONSOLE","FILE"])
     root(INFO, ["CONSOLE","FILE"])
 } else {
-    logger("com.weiyi.hlj.mapper", DEBUG, ["CONSOLE"])
+    logger("com.qinxy.mapper", DEBUG, ["CONSOLE"])
     root(INFO, ["CONSOLE"])
 }
