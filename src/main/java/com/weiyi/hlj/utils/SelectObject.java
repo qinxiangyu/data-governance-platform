@@ -416,7 +416,8 @@ public class SelectObject {
      * @param groupByExpression
      */
     public void addGroupByExpression(Expression groupByExpression) {
-        List<Expression> listGroupByExpression = plainSelect.getGroupByColumnReferences();
+        GroupByElement byElement = plainSelect.getGroupBy();
+        List<Expression> listGroupByExpression = byElement.getGroupByExpressions();
         if (listGroupByExpression == null) {
             plainSelect.addGroupByColumnReference(groupByExpression);
             return;
